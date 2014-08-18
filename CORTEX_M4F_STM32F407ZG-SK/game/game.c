@@ -89,10 +89,8 @@ GAME_EventHandler1()
 //		player2IsReversed = 0;
 //	}
 //}
-int32_t xDiff, yDiff , x , y, temp;;
-static uint32_t _x, _y ;
- int32_t  xr;
 
+ int32_t x, xr;
 void
 GAME_EventHandler2()
 {
@@ -100,14 +98,12 @@ GAME_EventHandler2()
 
 		if( s->TouchDetected){
 			x = s->X;
-			temp = x ;
-
-
+			xr=x;
 //			if (abs(x-temp)>=100)
 //				xr = temp;
 //			else
 //				xr=x;
-			xr=x;
+
 			/* x value first correction */
 //					if(x <= 3000){
 //						x = 3870 - x;
@@ -128,19 +124,6 @@ GAME_EventHandler2()
 		//player2IsReversed = 0;
 		/* Read x value from DATA_X register */
 //		x = I2C_ReadDataBuffer(IOE_REG_TP_DATA_X);
-
-//			xr = x;
-			//if(!x>240)
-
-
-//
-//			xDiff = x > player2X? (x - player2X): (player2X - x);
-//			if (xDiff>5)
-
-
-		 //IOE_TP_GetState()->TouchDetected = 0;
-//
-
 
 	}
 
@@ -256,8 +239,7 @@ GAME_Update()
 			}
 		}
 	//----------------------------------------------------------------------------------------------------------------------------------
-		else{
-			//if demoMode == 1
+		else{			//if demoMode == 1
 
 			//Player1 move
 			if( ballVY < 0 ){
@@ -299,9 +281,7 @@ GAME_Update()
 //				player2X = LCD_PIXEL_WIDTH - player2W;
 //
 			//Player2 move
-			//LCD_DrawFullRect( player2X, player2Y, player2W, player2H );
-
-			player2X  = xr;
+				player2X  = xr;
 
 				if( player2X <= 0 )
 					player2X = 0;
@@ -365,7 +345,7 @@ GAME_Update()
 						ballVY = 3;
 						ballVX = 7;
 					}
-					else if( ballX + ballSize < player1Y + player1W/2 ){ //player2X,
+					else if( ballX + ballSize < player1Y + player1W/2 ){
 						ballVY = 7;
 						ballVX =-3;
 					}
@@ -393,5 +373,4 @@ GAME_Render()
 	LCD_DrawFullRect( player2X, player2Y, player2W, player2H );
 	LCD_DrawFullRect( ballX, ballY, ballSize, ballSize );
 	LCD_DrawLine( 10, LCD_PIXEL_HEIGHT / 2, LCD_PIXEL_WIDTH - 20, LCD_DIR_HORIZONTAL );
-//	LCD_DisplayStringLine(LINE(10),'hello') ;
 }
