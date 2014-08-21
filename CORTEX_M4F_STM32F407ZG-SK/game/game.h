@@ -13,8 +13,9 @@ EventHandler3();
 void
 GAME_Update();
 
-void
+int
 GAME_Render();
-
+void
+	GAME_CLEAN();
 #endif
 

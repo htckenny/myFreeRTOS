@@ -89,9 +89,15 @@ static void GameEventTask3( void *pvParameters )
 
 static void GameTask( void *pvParameters )
 {
+	int re = 0;
 	while( 1 ){
 		GAME_Update();
-		GAME_Render();
+		re = GAME_Render();
+		if(re){
+
+			vTaskDelay(2000);
+			GAME_CLEAN();
+		}
 		vTaskDelay( 10 );
 	}
 }
